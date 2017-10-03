@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '1.2.3'
+    id 'idea'
+}
+
+group 'co.com.uniandes.sube'
+version '1.0-SNAPSHOT'
+
+
+idea {
+    project {
+        languageLevel = '1.8'
+    }
+}
+repositories {
+    mavenCentral()
+    maven {
+        url = 'http://oss.sonatype.org/content/repositories/snapshots/'
+    }
+    mavenLocal() /* Just in case we want to use local artifacts that we build locally. */
+}
+
+
+sourceCompatibility = '1.8'
+mainClassName = 'io.vertx.core.Launcher'
+apply plugin: 'maven'
+dependencies {
+
+    compile "io.vertx:vertx-core:3.2.0"
+    compile "org.hibernate:hibernate-core:4.3.6.Final"
+    compile group: 'com.github.noraui', name: 'ojdbc7', version: '12.1.0.2'
+
+    
+
+ 
+    
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.9'
+}
