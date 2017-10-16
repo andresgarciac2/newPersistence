@@ -32,6 +32,8 @@ public class Postulation {
 	private int offerId;
 	@Column(name="CREATION_DATE")	
 	private Date creationDate;
+	@Column(name="CURRENT_STEP")
+	private int currentStep;
 	@Column(name="STATE")	
 	private int state;
 	
