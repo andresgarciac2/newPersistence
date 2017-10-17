@@ -194,6 +194,22 @@ public class MainTest {
 			i++;
 		}
 		
+		Date fechaTest = new Date();
+		AcademicOffer ao = new AcademicOffer();
+		ao.setCreateBy(1);
+		ao.setCreationDate(fechaTest);
+		ao.setStartDate(fechaTest);
+		ao.setEndDate(fechaTest);
+		ao.setName("oferta prueba");
+		ao.setDescription("descripcion prueba");
+		ao.setType(1);
+		ao.setState(1);
+
+		session.beginTransaction();		
+		session.save(ao);
+		session.getTransaction().commit();
+		Integer id = (Integer)session.getIdentifier(ao);
+		System.out.println("el id es: "+id);
 		
 		
 		session.close();
