@@ -11,12 +11,28 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 /**
  * @author Ciro Diaz
  *
  */
 @Entity
 @Table(name="ROLE_ACCESS")
+
+@NamedQueries({
+	@NamedQuery(name = "RoleAccess.findAll", 
+			query = "select rol FROM RoleAccess rol order by id"),
+	@NamedQuery(name = "RoleAccess.findById", //Devuelve la relación rol/acceso por id específico
+	query = "select rol FROM RoleAccess rol where id = :id"),
+	@NamedQuery(name = "RoleAccess.findByUserId", //Devuelve las relaciones rol/acceso por nombre de usuario
+	query = "select rol FROM RoleAccess rol where userId = :userId"),
+	@NamedQuery(name = "RoleAccess.findByRoleId", //Devuelve las relaciones rol/acceso por rol
+	query = "select rol FROM RoleAccess rol where roleId = :roleId")	
+	
+})
+
 public class RoleAccess {
 
 	@Id

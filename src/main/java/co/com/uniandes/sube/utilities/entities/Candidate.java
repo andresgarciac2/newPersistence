@@ -10,6 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 import java.util.Date;
 
 
@@ -20,6 +23,26 @@ import java.util.Date;
  */
 @Entity
 @Table(name="CANDIDATE")
+
+@NamedQueries({
+	@NamedQuery(name = "Candidate.findAll", 
+			query = "select can FROM Candidate can order by userId"),
+	@NamedQuery(name = "Candidate.findByUserId", //Devuelve todos los candidatos que hay en la tabla con el ID buscado
+	query = "select can FROM Candidate can where userId = :userId"),
+	@NamedQuery(name = "Candidate.findBetweenBirthDate", //Devuelve los candidatos encontrados entre un periodo de fechas de nacimiento.
+	query = "select can FROM Candidate can where birthDate between ?1 and ?2"),
+	@NamedQuery(name = "Candidate.findByCity", //Devuelve los candidatos encontrados entre un periodo de fechas de inicio.
+	query = "select can FROM Candidate can where city = :city"),
+	@NamedQuery(name = "Candidate.findByDepartment", //Devuelve los candidatos encontrados entre un periodo de fechas de inicio.
+	query = "select can FROM Candidate can where department = :department"),
+	@NamedQuery(name = "Candidate.findByLevelOfSchooling", //Devuelve los candidatos encontrados entre un periodo de fechas de inicio.
+	query = "select can FROM Candidate can where levelOfSchooling = :levelOfSchooling"),
+	@NamedQuery(name = "Candidate.findByStratum", //Devuelve los candidatos encontrados entre un periodo de fechas de inicio.
+	query = "select can FROM Candidate can where stratum = :stratum"),
+	@NamedQuery(name = "Candidate.findBetweenStratum", //Devuelve los candidatos encontrados entre un periodo de fechas de inicio.
+	query = "select can FROM Candidate can where stratum between ?1 and ?2")
+	
+})
 public class Candidate {
 
 	@Column(name="USER_ID")	

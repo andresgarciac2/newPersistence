@@ -28,9 +28,9 @@ import java.util.Date;
 		@NamedQuery(name = "AcademicOffer.findById", //Devuelve todas las ofertas que hay en la tabla con el ID buscado
 		query = "select ao FROM AcademicOffer ao where id = :id"),
 		@NamedQuery(name = "AcademicOffer.findByStartDatePeriod", //Devuelve las ofertas encontradas entre un periodo de fechas de inicio.
-		query = "select ao FROM AcademicOffer ao where startDate between :startDateA and startDateB")/*,
+		query = "select ao FROM AcademicOffer ao where startDate between ?1 and ?2"),
 		@NamedQuery(name = "AcademicOffer.findByEndDatePeriod", //Devuelve todas las ofertas que hay entre un periodo de fechas de finalizacion
-		query = "id, create_by, creation_date, start_date, end_date, name, description, type, state FROM academic_offer where end_date between :endDateA and endDateB"),*/
+		query = "select ao FROM academic_offer ao where end_date between ?1 and ?2"),
 
 })
 public class AcademicOffer {

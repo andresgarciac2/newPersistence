@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 
 /**
  * @author Ciro Diaz
@@ -18,6 +21,21 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="OFFER_STEP")
+
+@NamedQueries({
+	@NamedQuery(name = "OfferStep.findAll", 
+			query = "select ofst FROM OfferStep ofst order by id"),
+	@NamedQuery(name = "OfferStep.findById", //Devuelve el paso que hay en la tabla con el ID buscado
+	query = "select ofst FROM OfferStep ofst where id = :id"),
+	@NamedQuery(name = "OfferStep.findByConfigurationId", //Devuelve los pasos encontrados de una identificación específica.
+	query = "select ofst FROM OfferStep ofst where configurationId = :configurationId"),
+	@NamedQuery(name = "OfferStep.findByOfferId", //Devuelve los pasos configurados para una oferta
+	query = "select ofst FROM OfferStep ofst where offerId = :offerId"),
+	@NamedQuery(name = "OfferStep.findByNamePart", //Devuelve los pasos que tengan un segmento de texto específico; no es case sensitive
+	query = "select ofst FROM OfferStep ofst where UPPER(name) like  UPPER(:name)") //llamar así: query.setParamter("name", "%" + name + "%") para cadenas parciales
+	
+})
+
 public class OfferStep {
 
 	@Id

@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 
 /**
  * @author Ciro Diaz
@@ -18,6 +21,23 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="CATALOG")
+
+@NamedQueries({
+	@NamedQuery(name = "Catalog.findAll", 
+			query = "select cat FROM Catalog cat order by id"),
+	@NamedQuery(name = "Catalog.findById", //Devuelve todos los valores que hay en la tabla con el ID buscado
+	query = "select cat FROM Catalog cat where id = :id"),
+	@NamedQuery(name = "Catalog.findByName", //Devuelve los valores encontrados que tengan el nombre especificado
+	query = "select cat FROM Catalog cat where name = :name"),
+	@NamedQuery(name = "Catalog.findByConceptId", //Devuelve los valores por el ID de concepto
+	query = "select cat FROM Catalog cat where conceptId = :conceptId"),
+	@NamedQuery(name = "Catalog.findByParentId", //Devuelve los valores asociados con un catálogo
+	query = "select cat FROM Catalog cat where parentId = :parentId"),
+	@NamedQuery(name = "Catalog.findSpecificConcept", //Devuelve un valor específico; asume que la relación entre parent y concepto es 1 a 1
+	query = "select cat FROM Catalog cat where parentId = :parentId and conceptId = :conceptId")
+	
+})
+
 public class Catalog {
 
 	@Id

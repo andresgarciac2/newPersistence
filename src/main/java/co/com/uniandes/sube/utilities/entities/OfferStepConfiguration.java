@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 
 /**
  * @author Ciro Diaz
@@ -18,6 +21,17 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="OFFER_STEP_CONFIGURATION")
+
+@NamedQueries({
+	@NamedQuery(name = "OfferStepConfiguration.findAll", 
+			query = "select ofst FROM OfferStepConfiguration ofst order by id"),
+	@NamedQuery(name = "OfferStepConfiguration.findById", //Devuelve la instancia de configuración de paso que hay en la tabla con el ID buscado
+	query = "select ofst FROM OfferStepConfiguration ofst where id = :id"),
+	@NamedQuery(name = "OfferStepConfiguration.findByOfferId", //Devuelve las instancias de configuración de paso encontradas de una oferta
+	query = "select ofst FROM OfferStepConfiguration ofst where offerId = :offerId")
+	
+})
+
 public class OfferStepConfiguration {
 
 	@Id

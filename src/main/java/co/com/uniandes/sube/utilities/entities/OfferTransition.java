@@ -11,13 +11,32 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 
 /**
  * @author Ciro Diaz
  *
  */
 @Entity
-@Table(name="OFFER_STEP")
+@Table(name="OFFER_TRANSITION")
+
+@NamedQueries({
+	@NamedQuery(name = "OfferTransition.findAll", 
+			query = "select oft FROM OfferTransition oft order by id"),
+	@NamedQuery(name = "OfferTransition.findById", //Devuelve la transición que hay en la tabla con el ID buscado
+	query = "select oft FROM OfferTransition oft where id = :id"),
+	@NamedQuery(name = "OfferTransition.findByOfferId", //Devuelve las transiciones de pasos encontradas de una oferta
+	query = "select oft FROM OfferTransition oft where offerId = :offerId"),
+	@NamedQuery(name = "OfferTransition.findBySourceStep", //Devuelve la transición para una oferta del paso anterior "sourceStep" indicado 
+	query = "select oft FROM OfferTransition oft where offerId = :offerId and sourceStep = :sourceStep"),
+	@NamedQuery(name = "OfferTransition.findByTargetStep", //Devuelve la transición para una oferta del paso siguiente "targetStep" indicado 
+	query = "select oft FROM OfferTransition oft where offerId = :offerId and targetStep = :targetStep")
+	
+})
+
+
 public class OfferTransition {
 
 	@Id

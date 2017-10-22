@@ -11,12 +11,30 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 /**
  * @author Ciro Diaz
  *
  */
 @Entity
 @Table(name="ROLE")
+
+@NamedQueries({
+	@NamedQuery(name = "Role.findAll", 
+			query = "select rol FROM Role rol order by id"),
+	@NamedQuery(name = "Role.findById", //Devuelve el rol por id específico
+	query = "select rol FROM Role rol where id = :id"),
+	@NamedQuery(name = "Role.findByName", //Devuelve el rol por nombre
+	query = "select rol FROM Role rol where name = :name"),
+	@NamedQuery(name = "Role.findByIsActive", //Devuelve los roles que se encuentren en el estado indicado
+	query = "select rol FROM Role rol where isActive = :isActive"),
+	@NamedQuery(name = "Offeror.findByDescriptionPart", //Devuelve las descripciones que cuenten con un segmento de texto específico; no es case sensitive
+	query = "select rol FROM Role rol where UPPER(description) like  UPPER(:description)") //llamar así: query.setParamter("description", "%" + description + "%") para cadenas parciales
+	
+})
+
 public class Role {
 
 	@Id

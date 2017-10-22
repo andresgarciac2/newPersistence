@@ -42,14 +42,14 @@ public class MainTest {
 
 	public static void main(String[] args) {
 
-		/*Date fechaTest = new Date();
+		Date fechaTest = new Date();
 		Role role = new Role();
 		role.setDescription("Prueba");
 		role.setId(2);
 		role.setName("Rol2");
 		role.setIsActive(1);
 
-		Session session = HibernateUtility.getSessionFactory().openSession();
+		/*Session session = HibernateUtility.getSessionFactory().openSession();
 		
 		session.beginTransaction();
 		session.save(role);
@@ -58,7 +58,7 @@ public class MainTest {
 		
 		
 		
-		AcademicOffer ao = new AcademicOffer();
+		*/AcademicOffer ao = new AcademicOffer();
 		
 		ao.setCreateBy(1);
 		ao.setCreationDate(fechaTest);
@@ -163,20 +163,15 @@ public class MainTest {
 		user.setFirstName("prueba");
 		user.setId(1);
 		user.setLastName("prueba");
-		user.setPhone("prueba");
+		user.setPhone("prueba");		
+
 		
-		Role role = new Role();
-		role.setId(1);
-		role.setName("prueba");
-		role.setDescription("prueba");
-		role.setIsActive(1);
-		
-		*/Session session = HibernateUtility.getSessionFactory().openSession();
-		/*session.beginTransaction();		
+		Session session = HibernateUtility.getSessionFactory().openSession();
+		session.beginTransaction();		
 		session.save(ao);
 		session.getTransaction().commit();
 		Integer id = (Integer)session.getIdentifier(ao);
-		System.out.println("el id es: "+id);*/
+		System.out.println("el id es: "+id);
 		Query consulta = session.getNamedQuery("AcademicOffer.findById");
 		consulta.setParameter("id", 1);
 		
@@ -188,8 +183,8 @@ public class MainTest {
 		for(AcademicOffer ofertaActual: resultado){
 			
 			System.out.println("resultado numero: " + i);
-			System.out.println(oferta.getId());			
-			System.out.println(oferta.getName());
+			System.out.println(ofertaActual.getId());			
+			System.out.println(ofertaActual.getName());
 			
 			i++;
 		}

@@ -13,12 +13,35 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 /**
  * @author Ciro Diaz
  *
  */
 @Entity
 @Table(name="POSTULATION")
+
+@NamedQueries({
+	@NamedQuery(name = "Postulation.findAll", 
+			query = "select pos FROM Postulation pos order by id"),
+	@NamedQuery(name = "Postulation.findById", //Devuelve una postulación con un ID específico
+	query = "select pos FROM Postulation pos where id = :id"),
+	@NamedQuery(name = "Postulation.findByUserId", //Devuelve todas las postulaciones para el candidato buscado
+	query = "select pos FROM Postulation pos where userId = :userId"),
+	@NamedQuery(name = "Postulation.findByOfferId", //Devuelve todas las postulaciones para la oferta indicada
+	query = "select pos FROM Postulation pos where offerId = :offerId"),
+	@NamedQuery(name = "Postulation.findBetweenCreationDate", //Devuelve las postulaciones entre un periodo de fechas
+	query = "select pos FROM Postulation pos where creationDate between ?1 and ?2"),
+	@NamedQuery(name = "Postulation.findByOfferCurrentStep", //Devuelve todas las postulaciones para la oferta indicada que se encuentren en el paso solicitado
+	query = "select pos FROM Postulation pos where offerId = :offerId and currentStep = :currentStep"),
+	@NamedQuery(name = "Postulation.findByState", //Devuelve todas las postulaciones para la oferta indicada que estén en el estado indicado
+	query = "select pos FROM Postulation pos where offerId = :offerId and state = :state")
+
+	
+})
+
 public class Postulation {
 
 	@Id

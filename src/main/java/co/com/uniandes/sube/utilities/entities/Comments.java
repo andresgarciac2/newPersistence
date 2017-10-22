@@ -13,13 +13,35 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 
 /**
  * @author Ciro Diaz
  *
  */
 @Entity
-@Table(name="CATALOG")
+@Table(name="COMMENTS")
+
+@NamedQueries({
+	@NamedQuery(name = "Comments.findAll", 
+			query = "select com FROM Comments com order by id"),
+	@NamedQuery(name = "Comments.findById", //Devuelve todos los valores que hay en la tabla con el ID buscado
+	query = "select com FROM Comments com where id = :id"),
+	@NamedQuery(name = "Comments.findByConceptId", //Devuelve los valores por el ID de concepto
+	query = "select com FROM Comments com where conceptId = :conceptId"),
+	@NamedQuery(name = "Comments.findByObjectId", //Devuelve los valores asociados con un objeto
+	query = "select com FROM Comments com where objectId = :objectId"),
+	@NamedQuery(name = "Candidate.findByCreator", //Devuelve los comentarios encontrados que haya creado un usuario
+	query = "select com FROM Comments com where createBy = :createBy"),
+	@NamedQuery(name = "Candidate.findByBetweenCreationDate", //Devuelve los comentarios que se hayan hecho entre un periodo de fechas
+	query = "select com FROM Comments com where creationDate between ?1 and ?2"),
+	@NamedQuery(name = "Comments.findByTextPart", //Devuelve los comentarios que tengan un segmento de texto específico; no es case sensitive
+	query = "select com FROM Comments com where UPPER(textValue) like  UPPER(:textValue)") //llamar así: query.setParamter("textValue", "%" + textValue + "%") para cadenas parciales
+	
+})
+
 public class Comments {
 
 	
