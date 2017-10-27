@@ -32,7 +32,6 @@ import co.com.uniandes.sube.utilities.entities.RoleAccess;
 import co.com.uniandes.sube.utilities.entities.UserAuthentication;
 import co.com.uniandes.sube.utilities.entities.UserSessionToken;
 import co.com.uniandes.sube.utilities.entities.Users;
-import oracle.sql.TIMESTAMP;
 
 /**
  * @author Ciro Diaz
@@ -214,7 +213,9 @@ public class MainTest {
 		
 		session.close();
 		
+		OfferStep oStp = new OfferStep();
 		
+		oStp.setId(1);
 		
 		
 
