@@ -53,6 +53,8 @@ public class OfferStep {
 	private String type;
 	@Column(name="NAME")	
 	private String name;
+	@Column(name="POSITION")
+	private int position;
 	
 	public int getId() {
 		return id;
@@ -79,4 +81,11 @@ public class OfferStep {
 		this.offerId = offerId;
 	}
 
+	public int getPosition() {
+		return this.position;
+	}
+
+	public void setPosition(int position) {
+		this.position = position;
+	}
 }
