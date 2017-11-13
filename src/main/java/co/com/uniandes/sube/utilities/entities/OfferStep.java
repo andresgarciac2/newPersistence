@@ -50,7 +50,7 @@ public class OfferStep {
 	@Column(name="OFFER_ID")	
 	private int offerId;
 	@Column(name="TYPE")	
-	private String type;
+	private int type;
 	@Column(name="NAME")	
 	private String name;
 	@Column(name="POSITION")
@@ -80,12 +80,17 @@ public class OfferStep {
 	public void setOfferId(int offerId) {
 		this.offerId = offerId;
 	}
-
 	public int getPosition() {
 		return this.position;
 	}
-
 	public void setPosition(int position) {
 		this.position = position;
 	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
+	
 }
