@@ -30,7 +30,7 @@ import java.util.Date;
 		@NamedQuery(name = "AcademicOffer.findByStartDatePeriod", //Devuelve las ofertas encontradas entre un periodo de fechas de inicio.
 		query = "select ao FROM AcademicOffer ao where startDate between ?1 and ?2"),
 		@NamedQuery(name = "AcademicOffer.findByEndDatePeriod", //Devuelve todas las ofertas que hay entre un periodo de fechas de finalizacion
-		query = "select ao FROM academic_offer ao where end_date between ?1 and ?2"),
+		query = "select ao FROM AcademicOffer ao where end_date between ?1 and ?2"),
 
 })
 public class AcademicOffer {

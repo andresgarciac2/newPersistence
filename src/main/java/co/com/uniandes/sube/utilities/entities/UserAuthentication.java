@@ -35,9 +35,9 @@ public class UserAuthentication {
 	private int userId;
 	@Column(name="IS_BLOCKED")	
 	private int isBlocked;
-	@Column(name="PASSWORD")	
+	@Column(name="PASSWORD", columnDefinition="BLOB")	
 	private String passWord;
-	@Column(name="PASSWORD_SALT")	
+	@Column(name="PASSWORD_SALT", columnDefinition="BLOB")	
 	private String passSalt;
 	
 	public int getUserId() {

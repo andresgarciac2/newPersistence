@@ -90,7 +90,11 @@ public class Postulation {
 	public void setState(int state) {
 		this.state = state;
 	}
-	
-	
+	public int getCurrentStep() {
+		return currentStep;
+	}
+	public void setCurrentStep(int currentStep) {
+		this.currentStep = currentStep;
+	}
 	
 }

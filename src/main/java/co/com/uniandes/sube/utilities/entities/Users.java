@@ -25,8 +25,8 @@ import org.hibernate.annotations.NamedQuery;
 	query = "select usr FROM Users usr where id = :id"),
 	@NamedQuery(name = "Users.findByDni", //Devuelve el usuario que tenga el DNI indicado, del tipo indicado
 	query = "select usr FROM Users usr where dniType = :dniType and dni = :dni"),
-	@NamedQuery(name = "Users.findByDni", //Devuelve los usuarios que tengan el DNI del tipo indicado
-	query = "select usr FROM Users usr where dniType = :dniType"),
+	//@NamedQuery(name = "Users.findByDni", //Devuelve los usuarios que tengan el DNI del tipo indicado
+	//query = "select usr FROM Users usr where dniType = :dniType"),
 	@NamedQuery(name = "Users.findByCountry", //Devuelve los usuarios del país indicado
 	query = "select usr FROM Users usr where country = :country"),
 	@NamedQuery(name = "Users.findByEMail", //Devuelve el usuario con el email indicado

@@ -50,12 +50,12 @@ public class PostulationInfo {
 	private int boolValue;
 	@Column(name="DATE_VALUE")	
 	private Date dateValue;
-	@Column(name="DECIMAL_VALUE")	
+	@Column(name="DECIMAL_VALUE", columnDefinition = "NUMBER(18,0)")	
 	private double decimalValue;
 	@Column(name="INT_VALUE")	
 	private int intValue;	
 	@Column(name="STRING_VALUE")	
-	private int stringValue;
+	private String stringValue;
 	public int getId() {
 		return id;
 	}
@@ -98,10 +98,10 @@ public class PostulationInfo {
 	public void setIntValue(int intValue) {
 		this.intValue = intValue;
 	}
-	public int getStringValue() {
+	public String getStringValue() {
 		return stringValue;
 	}
-	public void setStringValue(int stringValue) {
+	public void setStringValue(String stringValue) {
 		this.stringValue = stringValue;
 	}	
 	

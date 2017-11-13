@@ -41,7 +41,7 @@ public class OfferStepConfiguration {
 	private int id;	
 	@Column(name="OFFER_ID")	
 	private int offerId;
-	@Column(name="SERIALIZE_SETTINGS")	
+	@Column(name="SERIALIZE_SETTINGS", columnDefinition="CLOB")	
 	private String serializeSettings;
 	public int getId() {
 		return id;
