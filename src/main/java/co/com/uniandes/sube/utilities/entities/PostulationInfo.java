@@ -13,12 +13,28 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 /**
  * @author Ciro Diaz
  *
  */
 @Entity
 @Table(name="POSTULATION_INFO")
+
+@NamedQueries({
+	@NamedQuery(name = "PostulationInfo.findAll", 
+			query = "select pos FROM PostulationInfo pos order by id"),
+	@NamedQuery(name = "PostulationInfo.findById", //Devuelve la información de postulación con un ID específico
+	query = "select pos FROM PostulationInfo pos where id = :id"),
+	@NamedQuery(name = "PostulationInfo.findByAttributeId", //Devuelve la información de postulacion para el atributo buscado
+	query = "select pos FROM PostulationInfo pos where attributeId = :attributeId"),
+	@NamedQuery(name = "PostulationInfo.findByPostulationId", //Devuelve todas las instancias de información de postulaciones para la postulación indicada
+	query = "select pos FROM PostulationInfo pos where postulationId = :postulationId")
+	
+})
+
 public class PostulationInfo {
 
 	@Id
@@ -34,12 +50,12 @@ public class PostulationInfo {
 	private int boolValue;
 	@Column(name="DATE_VALUE")	
 	private Date dateValue;
-	@Column(name="DECIMAL_VALUE")	
+	@Column(name="DECIMAL_VALUE", columnDefinition = "NUMBER(18,0)")	
 	private double decimalValue;
 	@Column(name="INT_VALUE")	
 	private int intValue;	
 	@Column(name="STRING_VALUE")	
-	private int stringValue;
+	private String stringValue;
 	public int getId() {
 		return id;
 	}
@@ -82,10 +98,10 @@ public class PostulationInfo {
 	public void setIntValue(int intValue) {
 		this.intValue = intValue;
 	}
-	public int getStringValue() {
+	public String getStringValue() {
 		return stringValue;
 	}
-	public void setStringValue(int stringValue) {
+	public void setStringValue(String stringValue) {
 		this.stringValue = stringValue;
 	}	
 	

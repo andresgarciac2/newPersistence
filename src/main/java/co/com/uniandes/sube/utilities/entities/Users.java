@@ -8,12 +8,37 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 /**
  * @author Ciro Diaz
  *
  */
 @Entity
 @Table(name="USERS")
+
+@NamedQueries({
+	@NamedQuery(name = "Users.findAll", 
+			query = "select usr FROM Users usr order by id"),
+	@NamedQuery(name = "Users.findById", //Devuelve un usuario específico por su identificador en el sistema
+	query = "select usr FROM Users usr where id = :id"),
+	@NamedQuery(name = "Users.findByDni", //Devuelve el usuario que tenga el DNI indicado, del tipo indicado
+	query = "select usr FROM Users usr where dniType = :dniType and dni = :dni"),
+	//@NamedQuery(name = "Users.findByDni", //Devuelve los usuarios que tengan el DNI del tipo indicado
+	//query = "select usr FROM Users usr where dniType = :dniType"),
+	@NamedQuery(name = "Users.findByCountry", //Devuelve los usuarios del país indicado
+	query = "select usr FROM Users usr where country = :country"),
+	@NamedQuery(name = "Users.findByEMail", //Devuelve el usuario con el email indicado
+	query = "select usr FROM Users usr where eMail = :eMail"),
+	@NamedQuery(name = "Users.findByFirstNamePart", //Devuelve los usuarios que tengan un segmento de texto específico; no es case sensitive
+	query = "select usr FROM Users usr where UPPER(firstName) like  UPPER(:firstName)"), //llamar así: query.setParamter("firstName", "%" + companyName + "%") para cadenas parciales
+	@NamedQuery(name = "Users.findByLastNamePart", //Devuelve los usuarios que tengan un segmento de texto específico; no es case sensitive
+	query = "select usr FROM Users usr where UPPER(lastName) like  UPPER(:lastName)") //llamar así: query.setParamter("firstName", "%" + companyName + "%") para cadenas parciales
+
+	
+})
+
 public class Users {
 
 	@Column(name="ID")	
