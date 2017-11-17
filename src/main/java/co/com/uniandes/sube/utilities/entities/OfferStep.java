@@ -34,8 +34,9 @@ import org.hibernate.annotations.NamedQuery;
 	@NamedQuery(name = "OfferStep.findByType", //Devuelve los pasos configurados para una oferta que sean de un tipo específico
 	query = "select ofst FROM OfferStep ofst where offerId = :offerId and type = :type"),
 	@NamedQuery(name = "OfferStep.findByNamePart", //Devuelve los pasos que tenga n un segmento de texto específico; no es case sensitive
-	query = "select ofst FROM OfferStep ofst where UPPER(name) like  UPPER(:name)") //llamar así: query.setParamter("name", "%" + name + "%") para cadenas parciales
-	
+	query = "select ofst FROM OfferStep ofst where UPPER(name) like  UPPER(:name)"), //llamar así: query.setParamter("name", "%" + name + "%") para cadenas parciales
+	@NamedQuery(name = "OfferStep.findByOfferIdAndPosition", //Devuelve el paso para una oferta segun posición
+	query = "select ofst FROM OfferStep ofst where offerId = :offerId and position = :position")
 })
 
 public class OfferStep {
