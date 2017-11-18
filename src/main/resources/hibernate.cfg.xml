@@ -6,7 +6,7 @@
 		<property name="hibernate.connection.username">uniandes</property>
 		<property name="hibernate.connection.password">manage</property>
 		<property name="hibernate.connection.pool_size">10</property>
-		<property name="show_sql">true</property>
+		<property name="show_sql">false</property>
 		<property name="dialect">org.hibernate.dialect.OracleDialect</property>
 		<property name="hibernate.hbm2ddl.auto">validate</property>
 		<mapping class="co.com.uniandes.sube.utilities.entities.Role" />
